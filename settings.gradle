@@ -1,0 +1,2 @@
+rootProject.name='cs492-s2'
+include ':app'

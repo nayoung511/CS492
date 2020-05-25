@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="btn_save" type="id" />
+    <item name="et_user_email" type="id" />
+    <item name="et_user_name" type="id" />
+    <item name="et_password" type="id" />
+    <item name="user_name" type="id" />
+    <item name="user_email" type="id" />
+    <item name="password" type="id" />
+    <item name="age" type="id" />
+</resources>
