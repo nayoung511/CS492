@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.cs492_s2;
+package com.example.cs492_s2.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
