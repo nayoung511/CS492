@@ -41,6 +41,7 @@ public class GalleryActivity extends AppCompatActivity{
         mAdapter = new GalleryAdapter(this, getImagesPath(this));
         recyclerView.setAdapter(mAdapter);
     }
+
     public static ArrayList<String> getImagesPath(Activity activity) {
         Uri uri;
         ArrayList<String> listOfAllImages = new ArrayList<String>();

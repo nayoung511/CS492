@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ideal_top">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="검색 결과"
+        android:textColor="#ffffff"
+        android:textSize="35dp"
+        android:paddingTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <RelativeLayout
+        android:id="@+id/ideal_box"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/box_ideal"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/profile_image"></ImageView>
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/profileImage"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="-55dp"
+            android:text="김사랑"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/user_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/profileImage"
+            android:layout_marginBottom="-50dp"
+            android:layout_toEndOf="@+id/user_name"
+            android:text="  23세"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/user_job"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/profileImage"
+            android:layout_marginBottom="-50dp"
+            android:layout_toEndOf="@+id/user_age"
+            android:text=" 대학생 "
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/user_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/profileImage"
+            android:layout_marginBottom="-50dp"
+            android:layout_toEndOf="@+id/user_job"
+            android:text="1.5km"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/hashtag_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/user_name"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="-50dp"
+            android:background="@drawable/box_hastag" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/hashtag_box"
+            android:layout_alignTop="@id/hashtag_box"
+            android:layout_alignEnd="@+id/hashtag_box"
+            android:layout_alignBottom="@+id/hashtag_box"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="#활발한"
+            android:textSize="23sp" />
+
+        <ImageView
+            android:id="@+id/hashtag_box2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/user_name"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="-50dp"
+            android:layout_toEndOf="@+id/hashtag_box"
+            android:background="@drawable/box_hastag" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignStart="@+id/hashtag_box2"
+            android:layout_alignTop="@id/hashtag_box"
+            android:layout_alignEnd="@+id/hashtag_box2"
+            android:layout_alignBottom="@+id/hashtag_box"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="#운동좋아"
+            android:textSize="20sp" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ideal_box2"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:background="@drawable/box_ideal"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="@id/ideal_box"
+        app:layout_constraintStart_toStartOf="@id/ideal_box"
+        app:layout_constraintTop_toBottomOf="@+id/ideal_box">
+
+        <ImageView
+            android:id="@+id/profileImage2"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/profile_image"></ImageView>
+
+        <TextView
+            android:id="@+id/user_name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/profileImage2"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="-55dp"
+            android:text="김사랑"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/user_age2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/profileImage2"
+            android:layout_marginBottom="-50dp"
+            android:layout_toEndOf="@+id/user_name2"
+            android:text="  23세"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/user_job2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/profileImage2"
+            android:layout_marginBottom="-50dp"
+            android:layout_toEndOf="@+id/user_age2"
+            android:text=" 대학생 "
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/user_location2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/profileImage2"
+            android:layout_marginBottom="-50dp"
+            android:layout_toEndOf="@+id/user_job2"
+            android:text="1.5km"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/hashtag_box3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/user_name2"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="-50dp"
+            android:background="@drawable/box_hastag" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/hashtag_box3"
+            android:layout_alignTop="@id/hashtag_box3"
+            android:layout_alignEnd="@+id/hashtag_box3"
+            android:layout_alignBottom="@+id/hashtag_box3"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="#활발한"
+            android:textSize="23sp" />
+
+        <ImageView
+            android:id="@+id/hashtag_box4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/user_name2"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="-50dp"
+            android:layout_toEndOf="@+id/hashtag_box3"
+            android:background="@drawable/box_hastag" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignStart="@+id/hashtag_box4"
+            android:layout_alignTop="@id/hashtag_box3"
+            android:layout_alignEnd="@+id/hashtag_box4"
+            android:layout_alignBottom="@+id/hashtag_box3"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="#운동좋아"
+            android:textSize="20sp" />
+
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

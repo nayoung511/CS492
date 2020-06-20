@@ -1,7 +1,9 @@
 package com.example.cs492_s2.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
@@ -37,21 +39,36 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.GalleryV
         this.activity = activity;
     }
 
+    public GalleryAdapter(ArrayList<String> myDataset) {
+        mDataset = myDataset;
+    }
+
     // Create new views (invoked by the layout manager)
     @Override
     public GalleryAdapter.GalleryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // create a new view
-        CardView v = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.item_gallery, parent, false);
-        GalleryViewHolder vh = new GalleryViewHolder(v);
-        return vh;
+        CardView cardView = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.item_gallery, parent, false);
+        return new GalleryViewHolder(cardView);
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(GalleryViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final GalleryViewHolder holder, int position) {
+
+        CardView cardView = holder.cardView;
+
+        cardView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("profilePath", mDataset.get(holder.getAdapterPosition()));
+                activity.setResult(Activity.RESULT_OK, resultIntent);
+                activity.finish();
+            }
+        });
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        ImageView imageView = holder.cardView.findViewById(R.id.imageView2);
+        ImageView imageView = cardView.findViewById(R.id.imageView2);
         Glide.with(activity).load(mDataset.get(position)).centerCrop().override(500).into(imageView);
 
     }

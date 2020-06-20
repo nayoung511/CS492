@@ -9,58 +9,31 @@
 
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="380dp"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="250dp"
-        android:contentDescription="TODO"
-        android:src="@drawable/layer_7"
+        android:layout_width="245dp"
+        android:layout_height="342dp"
+        android:layout_marginRight="80dp"
+        android:src="@drawable/main_phrase"
+        android:layout_marginTop="200dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="200dp"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="44dp"
-        android:layout_marginBottom="200dp"
-        android:src="@drawable/opening_phrase"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
     <Button
         android:id="@+id/btn_logout"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-
-        android:text="로그아웃"
-        app:layout_constraintEnd_toStartOf="@+id/imageView2"
-        app:layout_constraintHorizontal_bias="0.662"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="53dp"
-        android:background="@drawable/rounded_rectangle_3"
-        android:text="시작하기"
-        android:fontFamily="sans-serif-medium"
-        android:textColor="#ffffff"
-        android:textSize="25sp"
+        android:background="@drawable/main_btn_join"
+        android:fontFamily="@font/scdream3"
+        android:gravity="center"
+        android:text="클릭하여 시작하기"
+        android:textColor="#3b3b3b"
+        android:textSize="18sp"
+        android:layout_marginTop="670dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_logout"
-        app:layout_constraintVertical_bias="0.0" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

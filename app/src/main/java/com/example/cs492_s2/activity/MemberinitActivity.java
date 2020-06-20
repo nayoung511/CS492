@@ -1,12 +1,9 @@
 package com.example.cs492_s2.activity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,8 +40,10 @@ public class MemberinitActivity extends AppCompatActivity {
     private static final String TAG = "MemberinitActivity";
     private ImageView profileImageView;
     private String profilePath;
-    FirebaseUser user;
+    private File tempFile;
+    private Uri mImageCaptureUri;
 
+    FirebaseUser user;
     private FirebaseAuth mAthu;
     EditText et_birthdate, et_phone, et_name, et_location ;
     Button btn_check;
@@ -65,7 +64,8 @@ public class MemberinitActivity extends AppCompatActivity {
         findViewById(R.id.view_profileImage).setOnClickListener(onClickListener);
         findViewById(R.id.btn_picture).setOnClickListener(onClickListener);
         findViewById(R.id.btn_gallery).setOnClickListener(onClickListener);
-    }
+    };
+
 
     @Override
     public void onBackPressed(){
@@ -73,44 +73,32 @@ public class MemberinitActivity extends AppCompatActivity {
         finish();
     }
 
-
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode){
-            case 0: {
-                if(resultCode == Activity.RESULT_OK){
-                    profilePath = data.getStringExtra("profilePath");
-                    Bitmap bmp = BitmapFactory.decodeFile(profilePath);
-                    profileImageView.setImageBitmap(bmp);
-
-                }
-                break;
-            }
-        }
-    }
-
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.btn_check:
-                    profileUpdate();
+                    startToast("확인을 누르셨습니다 ");
+                    //profileUpdate();
+                    //메인 서치 화면으로 이동
+                    mystartActivity(LocationActivity.class);
                     break;
                 case R.id.view_profileImage:
                     DialogInterface.OnClickListener cameraListener = new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             mystartActivity(CameraActivity.class);
+
                         }
                     };
+
                     DialogInterface.OnClickListener albumListener = new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            mystartActivity(GalleryActivity.class);
+                            doTakeAlbumAction();
                         }
                     };
+
                     DialogInterface.OnClickListener cancelListener = new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -124,39 +112,6 @@ public class MemberinitActivity extends AppCompatActivity {
                             .setNeutralButton("앨범선택", albumListener)
                             .setNegativeButton("취소", cancelListener)
                             .show();
-
-
-//                    CardView cardView = findViewById(R.id.buttonsCardView);
-//                    if(cardView.getVisibility() == View.VISIBLE){
-//                        cardView.setVisibility(View.GONE);
-//                    }else{
-//                        cardView.setVisibility(View.VISIBLE);
-//                    }
-//                    break;
-
-
-
-//                case R.id.btn_picture:
-//                    mystartActivity(CameraActivity.class);
-//                    break;
-//                case R.id.btn_gallery:
-//
-//                    //권한이 없을 때
-//                    if (ContextCompat.checkSelfPermission(MemberinitActivity.this,
-//                            Manifest.permission.READ_EXTERNAL_STORAGE)
-//                            != PackageManager.PERMISSION_GRANTED) {
-//
-//                        // Permission is not granted
-//                        // Should we show an explanation?
-//                        if (ActivityCompat.shouldShowRequestPermissionRationale(MemberinitActivity.this,
-//                                Manifest.permission.READ_EXTERNAL_STORAGE)) {
-//                        } else {
-//                           startToast("권한을 허용해 주세요");
-//                        }
-//                    }else{
-//                        mystartActivity(GalleryActivity.class);
-//                    }
-//                    break;
             }
         }
     };
@@ -170,12 +125,38 @@ public class MemberinitActivity extends AppCompatActivity {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
-                    mystartActivity(GalleryActivity.class);
+                    //mystartActivity(GalleryActivity.class);
+                    doTakeAlbumAction();
                 } else {
                     startToast("권한을 허용해 주세요");
                 }
             }
         }
+    }
+
+    private void doTakeAlbumAction() {
+        // 앨범 호출
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType(android.provider.MediaStore.Images.Media.CONTENT_TYPE);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != RESULT_OK) {
+            return;
+        }
+        switch (requestCode) {
+            case 1: {
+                mImageCaptureUri = data.getData();
+                setImage();
+                break;
+            }
+        }
+    }
+    public void setImage(){
+        profileImageView.setImageURI(mImageCaptureUri);
     }
 
     private void profileUpdate(){
@@ -185,6 +166,7 @@ public class MemberinitActivity extends AppCompatActivity {
         final String location = ((EditText)findViewById(R.id.et_location)).getText().toString();
 
         if(name.length() > 0 && phone.length()>9 && birthdate.length() > 5 && location.length()>0){
+            startToast("양식 확인 ");
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRef = storage.getReference();
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -212,7 +194,6 @@ public class MemberinitActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Uri> task) {
                             if (task.isSuccessful()) {
                                 Uri downloadUri = task.getResult();
-
                                 //유저 정보
                                 MemberInfo memberInfo = new MemberInfo(name, phone, birthdate, location, downloadUri.toString());
                                 uploader(memberInfo);
@@ -261,3 +242,4 @@ public class MemberinitActivity extends AppCompatActivity {
     }
 
 }
+
