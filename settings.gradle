@@ -1,2 +1,2 @@
 rootProject.name='cs492-s2'
-include ':app'
+include ':app', ':libraries:test-common', ':libraries:kakaotalk', ':applications:kakao-open-android-navi-sample', ':libraries:friends', ':libraries:push', ':libraries:network', ':libraries:kakaostory', ':libraries:kakaolink', ':applications:kakao-open-android-sdk-sample', ':libraries:message-template', ':applications:kakao-open-android-link-sample', ':libraries:plusfriend', ':libraries:usermgmt', ':libraries:kakaonavi', ':libraries:auth', ':libraries:util', ':libraries:common'

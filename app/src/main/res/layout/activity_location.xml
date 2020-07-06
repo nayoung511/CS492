@@ -68,7 +68,7 @@
             android:searchIcon="@drawable/btn_search" >
     </SearchView>
 
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/search_hold"
                 android:layout_width="380dp"
                 android:layout_height="60dp"
@@ -76,11 +76,9 @@
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/search_bar"
                 android:fontFamily="@font/scdream3"
-
-
+                android:completionThreshold="1"
                 android:hint="     위치를 검색하세요">
-
-            </EditText>
+            </AutoCompleteTextView>
 
 
         <ImageView
@@ -90,6 +88,18 @@
             android:src="@drawable/btn_gps"
             android:layout_marginTop="50dp"
             android:layout_marginLeft="350dp"/>
+
+        <Button
+            android:id="@+id/go_idealList"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="이동"
+            android:textColor="#ffffff"
+            android:fontFamily="@font/scdream3"
+            android:layout_marginTop="130dp"
+            android:background ="@drawable/btn_go_ideal_list"
+            android:layout_centerHorizontal="true"/>
+
 
 <!--        <Button-->
 <!--            android:id="@+id/button"-->

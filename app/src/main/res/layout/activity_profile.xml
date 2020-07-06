@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/profile_background">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/scdream5"
+        android:text="프로필"
+        android:textColor="#ffffff"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/img_profile"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:background="@drawable/img_profile_setting"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+
+    <ScrollView
+        android:id="@+id/profile_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="260dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/profile_job"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/scdream4"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="10dp"
+                    android:text="직업"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/input_profile_job"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/box_profile_job"
+                    android:hint="   직업을 입력하세요" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/profile_personality"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/scdream4"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="10dp"
+                    android:text="성격"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/input_profile_personality"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/box_hashtag_profile" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="150dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/scdream4"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="10dp"
+                    android:text="특징"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/input_profile_char"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/box_hashtag_profile" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="220dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/scdream4"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="10dp"
+                    android:text="자기소개"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/input_self_intro"
+                    android:layout_width="360dp"
+                    android:layout_height="140dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/box_selfintro"
+                    android:hint="   자기소개를 입력해주세요. (100자 이하)" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btn_save_profile"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="420dp"
+        android:layout_marginTop="670dp"
+        android:background="@drawable/btn_save_profile"
+        android:paddingLeft="180dp"
+        app:layout_constraintEnd_toStartOf="@+id/profile_area"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

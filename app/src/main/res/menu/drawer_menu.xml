@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+    tools:showIn="navigation_view"
+    android:id="@+id/drawer_menu">
 
     <group android:checkableBehavior="single">
         <item android:id="@+id/nav_profile"
@@ -26,6 +27,7 @@
             <item android:id="@+id/nav_credit"
                 android:icon="@drawable/ic_credit"
                 android:title="크레딧"/>
+
             <item android:id="@+id/nav_announcement"
                 android:icon="@drawable/ic_announcement"
                 android:title="공지사항"/>

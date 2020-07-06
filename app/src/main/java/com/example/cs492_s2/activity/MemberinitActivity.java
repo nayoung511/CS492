@@ -18,26 +18,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs492_s2.MemberInfo;
 import com.example.cs492_s2.R;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 
 public class MemberinitActivity extends AppCompatActivity {
     private static final String TAG = "MemberinitActivity";
+    private static final int GALLERY_VIDEO = 1;
+    private static final int GALLERY_IMAGE = 0;
+
+
     private ImageView profileImageView;
     private String profilePath;
     private File tempFile;
@@ -78,17 +74,16 @@ public class MemberinitActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.btn_check:
-                    startToast("확인을 누르셨습니다 ");
+                    //startToast("확인을 누르셨습니다 ");
                     //profileUpdate();
                     //메인 서치 화면으로 이동
-                    mystartActivity(LocationActivity.class);
+                    mystartActivity(ProfileActivity.class);
                     break;
                 case R.id.view_profileImage:
                     DialogInterface.OnClickListener cameraListener = new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             mystartActivity(CameraActivity.class);
-
                         }
                     };
 
@@ -96,6 +91,7 @@ public class MemberinitActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             doTakeAlbumAction();
+
                         }
                     };
 
@@ -112,6 +108,8 @@ public class MemberinitActivity extends AppCompatActivity {
                             .setNeutralButton("앨범선택", albumListener)
                             .setNegativeButton("취소", cancelListener)
                             .show();
+
+                    break;
             }
         }
     };
@@ -166,46 +164,85 @@ public class MemberinitActivity extends AppCompatActivity {
         final String location = ((EditText)findViewById(R.id.et_location)).getText().toString();
 
         if(name.length() > 0 && phone.length()>9 && birthdate.length() > 5 && location.length()>0){
-            startToast("양식 확인 ");
-            FirebaseStorage storage = FirebaseStorage.getInstance();
-            StorageReference storageRef = storage.getReference();
+            Log.e("로그", "으으으으으응ㅁ.... ");
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            final StorageReference profileImagesRef = storageRef.child("images/"+user.getUid()+"/profilePic.jpg");
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            //StorageReference storageRef = storage.getReference();
+            //final StorageReference profileImagesRef = storageRef.child("images/"+user.getUid()+"/profilePic.jpg");
 
+            MemberInfo memberInfo = new MemberInfo(name, phone, birthdate, location);
+           if(user != null){
+               db.collection("users").document(user.getUid()).set(memberInfo)
+                       .addOnSuccessListener(new OnSuccessListener<Void>() {
+                           @Override
+                           public void onSuccess(Void aVoid) {
+                               startToast("회원정보 등록을 성공했어요.");
+                               //mystartActivity(ProfileActivity.class);
+                               finish();
+                               
+                           }
+                       })
+                       .addOnFailureListener(new OnFailureListener() {
+                           @Override
+                           public void onFailure(@NonNull Exception e) {
+                               startToast("회원정보 등록에 실패했어요. ");
+                           }
+                       });
 
-            if(profilePath == null){
-                MemberInfo memberinfo = new MemberInfo(name, phone, birthdate, location);
-                uploader(memberinfo);
-            }else {
-                try {
-                    InputStream stream = new FileInputStream(new File(profilePath));
-                    UploadTask uploadTask = profileImagesRef.putStream(stream);
-                    uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                        @Override
-                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                            if (!task.isSuccessful()) {
-                                throw task.getException();
-                            }
-                            // Continue with the task to get the download URL
-                            return profileImagesRef.getDownloadUrl();
-                        }
-                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Uri> task) {
-                            if (task.isSuccessful()) {
-                                Uri downloadUri = task.getResult();
-                                //유저 정보
-                                MemberInfo memberInfo = new MemberInfo(name, phone, birthdate, location, downloadUri.toString());
-                                uploader(memberInfo);
-                            } else {
-                                startToast("회원정보를 보내는데 실패했어요");
-                            }
-                        }
-                    });
-                } catch (FileNotFoundException e) {
-                    Log.e("로그", "에러 " + e.toString());
-                }
-            }
+           }
+//            uploader(memberInfo);
+//            startToast("회원정보를 보내는데 성공했어요");
+//
+//            startToast("회원등록 성공했어요 ");
+//            mystartActivity(LocationActivity.class);
+
+//            if(profilePath == null){
+//                startToast("회원정보가 비었네요");
+//                MemberInfo memberinfo = new MemberInfo(name, phone, birthdate, location);
+//                uploader(memberinfo);
+//            }else {
+//                try {
+//                    startToast("업로드 시도 ");
+//                    MemberInfo memberInfo = new MemberInfo(name, phone, birthdate, location);
+//                    uploader(memberInfo);
+//                    startToast("회원정보를 보내는데 성공했어요");
+//
+//                    //메인 서치 화면으로 이동
+//                    mystartActivity(LocationActivity.class);
+//
+//
+//                    InputStream stream = new FileInputStream(new File(profilePath));
+//                    UploadTask uploadTask = profileImagesRef.putStream(stream);
+//                    uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+//                        @Override
+//                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+//                            if (!task.isSuccessful()) {
+//                                throw task.getException();
+//                            }
+//                            // Continue with the task to get the download URL
+//                            return profileImagesRef.getDownloadUrl();
+//                        }
+//                    }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<Uri> task) {
+//                            if (task.isSuccessful()) {
+//                                //Uri downloadUri = task.getResult();
+//                                //유저 정보
+//                               // MemberInfo memberInfo = new MemberInfo(name, phone, birthdate, location, downloadUri.toString());
+//                                MemberInfo memberInfo = new MemberInfo(name, phone, birthdate, location);
+//                                uploader(memberInfo);
+//                                startToast("회원정보를 보내는데 성공했어요");
+//
+//                            } else {
+//                                startToast("회원정보를 보내는데 실패했어요");
+//                            }
+//                        }
+//                    });
+//                } catch (FileNotFoundException e) {
+//                    Log.e("로그", "에러 " + e.toString());
+//                }
+//            }
         }else{
             startToast("회원 정보를 입력해주세요");
         }
@@ -213,11 +250,15 @@ public class MemberinitActivity extends AppCompatActivity {
 
     private void uploader(MemberInfo memberInfo){
         // Access a Cloud Firestore instance from your Activity
+        Log.e("로그", user.getUid());
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-            db.collection("users").document(user.getUid()).set(memberInfo)
+        db.collection("users")
+                .document(user.getUid())
+                .set(memberInfo)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void avoid) {
+                            Log.e("로그", "흐흠.... ");
                             startToast("회원정보 등록을 성공했어요");
                             finish();
                         }

@@ -61,24 +61,32 @@ public class LoginActivity extends AppCompatActivity {
         String password = ((EditText)findViewById(R.id.et_password)).getText().toString();
 
         if(email.length() > 0 && password.length() > 0){
-            mAthu.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                FirebaseUser user = mAthu.getCurrentUser();
-                                startToast("로그인 성공했어요");
-                                mystartActivity(MainActivity.class);
-                            } else {
-                                // If sign in fails, display a message to the user.
-                                if (task.getException() != null) {
-                                   startToast("로그인 실패했어요");
-                                    startToast(task.getException().toString());
+            //check for the admin
+            if(email.equals("cs492_admin@admin.com") && password.equals("admin1234")){
+                mystartActivity(AdminActivity.class);
+            }
+            else{
+                mAthu.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    FirebaseUser user = mAthu.getCurrentUser();
+                                    startToast("로그인 성공했어요");
+                                    mystartActivity(MemberinitActivity.class);
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    if (task.getException() != null) {
+                                        startToast("로그인 실패했어요");
+                                        startToast(task.getException().toString());
+                                    }
                                 }
                             }
-                        }
-                    });
-        }else{
+                        });
+            }
+
+        }
+        else{
             startToast("이메일 또는 비밀번호를 입력해 주세요");
         }
 

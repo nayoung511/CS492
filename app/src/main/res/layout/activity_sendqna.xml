@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/qna_background">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/scdream5"
+        android:paddingTop="30dp"
+        android:text="질문지 작성"
+        android:textColor="#ffffff"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="이상형에게 묻고 싶은 나만의 질문이 있나요?\n질문을 만들어보고 이상형에게 보낼 수 있어요."
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:paddingTop="80dp"
+        android:textAlignment="center"/>
+
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="140dp"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/qna_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-340dp"
+            android:background="@drawable/whiteboard_copy_3"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/question_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/scdream5"
+                    android:paddingLeft="10dp"
+                    android:text="Q."
+                    android:textColor="#da266a"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/question_1"
+                    android:layout_width="300dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/question_box"
+                    android:fontFamily="@font/scdream3"
+                    android:hint="   질문을 입력해주세요."
+                    android:textColorHint="#1879e7" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/question_input_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/scdream5"
+                    android:paddingLeft="10dp"
+                    android:text="Q."
+                    android:textColor="#da266a"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/question_2"
+                    android:layout_width="300dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/question_box"
+                    android:fontFamily="@font/scdream3"
+                    android:hint="   질문을 입력해주세요."
+                    android:textColorHint="#1879e7" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/question_input_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/scdream5"
+                    android:paddingLeft="10dp"
+                    android:text="Q."
+                    android:textColor="#da266a"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/question_3"
+                    android:layout_width="300dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/question_box"
+                    android:fontFamily="@font/scdream3"
+                    android:hint="   질문을 입력해주세요."
+                    android:textColorHint="#1879e7" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/question_input_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/scdream5"
+                    android:paddingLeft="10dp"
+                    android:text="Q."
+                    android:textColor="#da266a"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/question_4"
+                    android:layout_width="300dp"
+                    android:layout_height="70dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/question_box"
+                    android:fontFamily="@font/scdream3"
+                    android:hint="   질문을 입력해주세요."
+                    android:textColorHint="#1879e7" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+            <LinearLayout
+                android:id="@+id/btn_box"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="550dp"
+                android:layout_marginBottom="50dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/btn_add"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/btn_add" />
+
+                <ImageView
+                    android:id="@+id/btn_delete"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/btn_delete" />
+
+            </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_save_qna"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:background="@drawable/btn_send"
+        android:gravity="center_horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="30dp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,6 +24,12 @@ public class GalleryActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+//        Intent intent = new Intent(Intent.ACTION_PICK);
+////        intent.setType(android.provider.MediaStore.Images.Media.CONTENT_TYPE);
+////        startActivityForResult(intent, 1);
+
+
         setContentView(R.layout.activity_gallery);
         recyclerView = findViewById(R.id.recycleView);
 

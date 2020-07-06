@@ -7,9 +7,7 @@
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality.
     -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-    <!-- 인터넷 사용 권한 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 인터넷 사용 권한 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -28,6 +26,12 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
+        <service
+            android:name=".activity.AdminPushMessageActivity"
+            android:enabled="true"
+            android:exported="true">
+
+        </service>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -56,12 +60,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.LoginActivity"
+            android:windowSoftInputMode="adjustNothing"/>
         <activity android:name=".activity.PasswordResetActivity" />
         <activity android:name=".activity.MemberinitActivity" />
         <activity android:name=".activity.CameraActivity" />
         <activity android:name=".activity.GalleryActivity" />
+
         <activity android:name=".activity.ChatActivity" />
+        <activity android:name=".activity.Chat2Activity"/>
+
+
         <activity android:name=".activity.LocationActivity" />
         <activity android:name=".activity.CurrentLocation" />
         <activity
@@ -73,15 +82,67 @@
                 <category android:name="anroid.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <activity android:name=".activity.CurrentLocationActivity"/>
-        <activity android:name=".activity.GpsTracker"/>
-        <activity android:name=".activity.reverseGeocoding"/>
-        <activity android:name=".activity.GeoVariable"/>
+        <activity android:name=".activity.GpsTracker" />
+        <activity android:name=".activity.reverseGeocoding" />
+        <activity android:name=".activity.GeoVariable" />
+        <activity android:name=".activity.AdminSendActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="kakaolink"
+                    android:scheme="kakaocf371b75768f87f93c0ed3bdbd675938" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.AdminActivity" />
+        <activity android:name=".activity.AdminPushActivity" />
+
+        <activity android:name=".activity.IdealListActivity"/>
+        <activity android:name=".activity.IdealDetailActivity"/>
+        <activity android:name=".activity.MyActivity"/>
+        <activity android:name=".activity.LocationParsing"/>
+
+        <activity android:name=".activity.ProfileActivity"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".activity.SendQnaActivity"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".activity.ReceiveQnaActivity"/>
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="cf371b75768f87f93c0ed3bdbd675938" />
+            android:value="@string/kakao_app_key" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" /> <!-- [START firebase_service] -->
+        <service
+            android:name=".activity.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service> <!-- [END firebase_service] -->
+        <!--
+ Set custom default icon. This is used when no icon is set for incoming notification messages.
+     See README(https://goo.gl/l4GJaQ) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_notice" />
+        <!--
+ Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+        <meta-data
+            android:name="firebase_messaging_auto_init_enabled"
+            android:value="false" />
+        <meta-data
+            android:name="firebase_analytics_collection_enabled"
+            android:value="false" />
     </application>
 
 </manifest>

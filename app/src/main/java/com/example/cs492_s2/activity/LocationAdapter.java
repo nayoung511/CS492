@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.RecyclerView;
+import com.example.cs492_s2.R;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class LocationAdapter extends BaseAdapter {
     private Context context;
     private List<String> list;
     private LayoutInflater inflate;
-    private RecyclerView.ViewHolder viewHolder;
+    private ViewHolder viewHolder;
 
     public LocationAdapter(List<String> list, Context context){
         this.list = list;
@@ -39,8 +39,22 @@ public class LocationAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        return null;
+    public View getView(int position, View convertView, ViewGroup viewGroup) {
+        if(convertView == null){
+            convertView = inflate.inflate(R.layout.location_data_list,null);
+
+            viewHolder = new ViewHolder();
+            viewHolder.label = (TextView) convertView.findViewById(R.id.label);
+
+            convertView.setTag(viewHolder);
+        }else{
+            viewHolder = (ViewHolder)convertView.getTag();
+        }
+
+        // 리스트에 있는 데이터를 리스트뷰 셀에 뿌린다.
+        viewHolder.label.setText(list.get(position));
+
+        return convertView;
     }
 
     class ViewHolder{

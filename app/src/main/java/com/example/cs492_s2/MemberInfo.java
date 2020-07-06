@@ -9,13 +9,13 @@ public class MemberInfo {
     private String location;
     private String photoUrl;
 
-    public MemberInfo(String name, String phone, String birthdate, String location, String photoUrl){
-        this.name = name;
-        this.phone = phone;
-        this.birthdate = birthdate;
-        this.location = location;
-        this.photoUrl = photoUrl;
-    }
+//    public MemberInfo(String name, String phone, String birthdate, String location, String photoUrl){
+//        this.name = name;
+//        this.phone = phone;
+//        this.birthdate = birthdate;
+//        this.location = location;
+//        //this.photoUrl = photoUrl;
+//    }
 
     public MemberInfo(String name, String phone, String birthdate, String location){
         this.name = name;
@@ -53,11 +53,11 @@ public class MemberInfo {
         this.location = location;
     }
 
-    public String getPhotoUrl(){
-        return this.photoUrl;
-    }
-    public void setPhotoUrl(String photoUrl){
-        this.photoUrl = photoUrl;
-    }
+//    public String getPhotoUrl(){
+//        return this.photoUrl;
+//    }
+//    public void setPhotoUrl(String photoUrl){
+//        this.photoUrl = photoUrl;
+//    }
 
 }

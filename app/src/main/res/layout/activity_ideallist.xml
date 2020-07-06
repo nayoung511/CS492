@@ -5,242 +5,611 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ideal_top">
+    android:background="@drawable/ideal_top"
+    android:scrollbars="vertical">
 
     <TextView
+        android:id="@+id/location_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="검색 결과"
         android:textColor="#ffffff"
-        android:textSize="35dp"
-        android:paddingTop="15dp"
+        android:textSize="25dp"
+        android:paddingTop="30dp"
+        android:fontFamily="@font/scdream5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <RelativeLayout
-        android:id="@+id/ideal_box"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:layout_marginTop="100dp"
-        android:background="@drawable/box_ideal"
-        android:gravity="center_vertical"
+<!--    <ListView-->
+<!--        android:id="@+id/list_ideal_box"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_marginTop="100dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/location_result"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+<!--        -->
+<!--        -->
+
+<!--    </ListView>-->
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingTop="90dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
-        <ImageView
-            android:id="@+id/profileImage"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            app:srcCompat="@drawable/profile_image"></ImageView>
-
-        <TextView
-            android:id="@+id/user_name"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/profileImage"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="-55dp"
-            android:text="김사랑"
-            android:textSize="35sp" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/user_age"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/profileImage"
-            android:layout_marginBottom="-50dp"
-            android:layout_toEndOf="@+id/user_name"
-            android:text="  23세"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/user_job"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/profileImage"
-            android:layout_marginBottom="-50dp"
-            android:layout_toEndOf="@+id/user_age"
-            android:text=" 대학생 "
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/user_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/profileImage"
-            android:layout_marginBottom="-50dp"
-            android:layout_toEndOf="@+id/user_job"
-            android:text="1.5km"
-            android:textSize="20sp" />
-
-        <ImageView
-            android:id="@+id/hashtag_box"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/user_name"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="-50dp"
-            android:background="@drawable/box_hastag" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/hashtag_box"
-            android:layout_alignTop="@id/hashtag_box"
-            android:layout_alignEnd="@+id/hashtag_box"
-            android:layout_alignBottom="@+id/hashtag_box"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="5dp"
-            android:text="#활발한"
-            android:textSize="23sp" />
-
-        <ImageView
-            android:id="@+id/hashtag_box2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/user_name"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="-50dp"
-            android:layout_toEndOf="@+id/hashtag_box"
-            android:background="@drawable/box_hastag" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_alignStart="@+id/hashtag_box2"
-            android:layout_alignTop="@id/hashtag_box"
-            android:layout_alignEnd="@+id/hashtag_box2"
-            android:layout_alignBottom="@+id/hashtag_box"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="5dp"
-            android:text="#운동좋아"
-            android:textSize="20sp" />
+            <LinearLayout
+                android:id="@+id/ideal_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:scrollbars="vertical">
 
 
-    </RelativeLayout>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/ideal_box"
+                    android:layout_width="380dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@drawable/box_ideal">
 
-    <RelativeLayout
-        android:id="@+id/ideal_box2"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:background="@drawable/box_ideal"
-        android:gravity="center_vertical"
-        app:layout_constraintEnd_toEndOf="@id/ideal_box"
-        app:layout_constraintStart_toStartOf="@id/ideal_box"
-        app:layout_constraintTop_toBottomOf="@+id/ideal_box">
+                    <RelativeLayout
+                        android:id="@+id/ideal_box_re"
+                        android:layout_width="match_parent"
+                        android:layout_height="420dp"
+                        android:orientation="vertical"
+                        android:background="@drawable/box_ideal">
 
-        <ImageView
-            android:id="@+id/profileImage2"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            app:srcCompat="@drawable/profile_image"></ImageView>
+                        <ImageView
+                            android:id="@+id/profileImage"
+                            android:layout_width="250dp"
+                            android:layout_height="250dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="30dp"
+                            app:srcCompat="@drawable/sample_profile_2" />
 
-        <TextView
-            android:id="@+id/user_name2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/profileImage2"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="-55dp"
-            android:text="김사랑"
-            android:textSize="35sp" />
+                        <TextView
+                            android:id="@+id/user_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/profileImage"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginBottom="-60dp"
+                            android:fontFamily="@font/scdream5"
+                            android:text="김사랑"
+                            android:textSize="35sp" />
 
-        <TextView
-            android:id="@+id/user_age2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/profileImage2"
-            android:layout_marginBottom="-50dp"
-            android:layout_toEndOf="@+id/user_name2"
-            android:text="  23세"
-            android:textSize="20sp" />
+                        <TextView
+                            android:id="@+id/user_age"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/profileImage"
+                            android:layout_marginBottom="-50dp"
+                            android:layout_toEndOf="@+id/user_name"
+                            android:fontFamily="@font/scdream3"
+                            android:text="  23세"
+                            android:textAlignment="center"
+                            android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/user_job2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/profileImage2"
-            android:layout_marginBottom="-50dp"
-            android:layout_toEndOf="@+id/user_age2"
-            android:text=" 대학생 "
-            android:textSize="20sp" />
+                        <TextView
+                            android:id="@+id/user_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/profileImage"
+                            android:layout_marginBottom="-50dp"
+                            android:layout_toEndOf="@+id/user_job"
+                            android:fontFamily="@font/scdream3"
+                            android:text="1.5km"
+                            android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/user_location2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/profileImage2"
-            android:layout_marginBottom="-50dp"
-            android:layout_toEndOf="@+id/user_job2"
-            android:text="1.5km"
-            android:textSize="20sp" />
+                        <TextView
+                            android:id="@+id/user_job"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/profileImage"
+                            android:layout_marginBottom="-50dp"
+                            android:layout_toEndOf="@+id/user_age"
+                            android:fontFamily="@font/scdream3"
+                            android:text=" 대학생 "
+                            android:textSize="20sp" />
 
-        <ImageView
-            android:id="@+id/hashtag_box3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/user_name2"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="-50dp"
-            android:background="@drawable/box_hastag" />
+                        <EditText
+                            android:id="@+id/user_hash_box"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/user_name"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginBottom="-60dp"
+                            android:background="@drawable/box_hastag"
+                            android:fontFamily="@font/scdream3"
+                            android:text="#활발한"
+                            android:textAlignment="center"
+                            android:textSize="18sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/hashtag_box3"
-            android:layout_alignTop="@id/hashtag_box3"
-            android:layout_alignEnd="@+id/hashtag_box3"
-            android:layout_alignBottom="@+id/hashtag_box3"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="5dp"
-            android:text="#활발한"
-            android:textSize="23sp" />
+                        <EditText
+                            android:id="@+id/user_hash_box_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/user_name"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginBottom="-60dp"
+                            android:layout_toRightOf="@+id/user_hash_box"
+                            android:background="@drawable/box_hastag"
+                            android:fontFamily="@font/scdream3"
+                            android:text="#운동좋아"
+                            android:textAlignment="center"
+                            android:textSize="18sp" />
 
-        <ImageView
-            android:id="@+id/hashtag_box4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/user_name2"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="-50dp"
-            android:layout_toEndOf="@+id/hashtag_box3"
-            android:background="@drawable/box_hastag" />
+                    </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_alignStart="@+id/hashtag_box4"
-            android:layout_alignTop="@id/hashtag_box3"
-            android:layout_alignEnd="@+id/hashtag_box4"
-            android:layout_alignBottom="@+id/hashtag_box3"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="5dp"
-            android:text="#운동좋아"
-            android:textSize="20sp" />
+                </androidx.cardview.widget.CardView>
 
 
-    </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ideal_recycler_view_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/ideal_box_2"
+                    android:layout_width="380dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@drawable/box_ideal">
+
+                    <RelativeLayout
+                        android:id="@+id/ideal_box_re_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="420dp"
+                        android:orientation="vertical"
+                        android:background="@drawable/box_ideal">
+
+                        <ImageView
+                            android:id="@+id/profileImage_2"
+                            android:layout_width="250dp"
+                            android:layout_height="250dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="30dp"
+                            app:srcCompat="@drawable/sample_profile_1" />
+
+                        <TextView
+                            android:id="@+id/user_name_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/profileImage_2"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginBottom="-60dp"
+                            android:fontFamily="@font/scdream5"
+                            android:text="이찬형"
+                            android:textSize="35sp" />
+
+                        <TextView
+                            android:id="@+id/user_age_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/profileImage_2"
+                            android:layout_marginBottom="-50dp"
+                            android:layout_toEndOf="@+id/user_name_2"
+                            android:fontFamily="@font/scdream3"
+                            android:text="  28세"
+                            android:textAlignment="center"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/user_location_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/profileImage_2"
+                            android:layout_marginBottom="-50dp"
+                            android:layout_toEndOf="@+id/user_job_2"
+                            android:fontFamily="@font/scdream3"
+                            android:text="2.8km"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/user_job_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/profileImage_2"
+                            android:layout_marginBottom="-50dp"
+                            android:layout_toEndOf="@+id/user_age_2"
+                            android:fontFamily="@font/scdream3"
+                            android:text=" 회사원 "
+                            android:textSize="20sp" />
+
+                        <EditText
+                            android:id="@+id/user_hash_box_2_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/user_name_2"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginBottom="-60dp"
+                            android:background="@drawable/box_hastag"
+                            android:fontFamily="@font/scdream3"
+                            android:text="#차분한"
+                            android:textAlignment="center"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/user_hash_box_2_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/user_name_2"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginBottom="-60dp"
+                            android:layout_toRightOf="@+id/user_hash_box_2_1"
+                            android:background="@drawable/box_hastag"
+                            android:fontFamily="@font/scdream3"
+                            android:text="#영화감상"
+                            android:textAlignment="center"
+                            android:textSize="18sp" />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ideal_recycler_view_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/ideal_box_3"
+                    android:layout_width="380dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@drawable/box_ideal">
+
+                    <RelativeLayout
+                        android:id="@+id/ideal_box_re_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="420dp"
+                        android:orientation="vertical"
+                        android:background="@drawable/box_ideal">
+
+                        <ImageView
+                            android:id="@+id/profileImage_3"
+                            android:layout_width="250dp"
+                            android:layout_height="250dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="30dp"
+                            app:srcCompat="@drawable/sample_profile_3" />
+
+                        <TextView
+                            android:id="@+id/user_name_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/profileImage_3"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginBottom="-60dp"
+                            android:fontFamily="@font/scdream5"
+                            android:text="이지담"
+                            android:textSize="35sp" />
+
+                        <TextView
+                            android:id="@+id/user_age_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/profileImage_3"
+                            android:layout_marginBottom="-50dp"
+                            android:layout_toEndOf="@+id/user_name_3"
+                            android:fontFamily="@font/scdream3"
+                            android:text="  26세"
+                            android:textAlignment="center"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/user_location_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/profileImage_3"
+                            android:layout_marginBottom="-50dp"
+                            android:layout_toEndOf="@+id/user_job_3"
+                            android:fontFamily="@font/scdream3"
+                            android:text="5.8km"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/user_job_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/profileImage_3"
+                            android:layout_marginBottom="-50dp"
+                            android:layout_toEndOf="@+id/user_age_3"
+                            android:fontFamily="@font/scdream3"
+                            android:text=" 엔지니어 "
+                            android:textSize="20sp" />
+
+                        <EditText
+                            android:id="@+id/user_hash_box_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/user_name_3"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginBottom="-60dp"
+                            android:background="@drawable/box_hastag"
+                            android:fontFamily="@font/scdream3"
+                            android:text="#재미있는"
+                            android:textAlignment="center"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/user_hash_box_2_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/user_name_3"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginBottom="-60dp"
+                            android:layout_toRightOf="@+id/user_hash_box_3"
+                            android:background="@drawable/box_hastag"
+                            android:fontFamily="@font/scdream3"
+                            android:text="#의욕적인"
+                            android:textAlignment="center"
+                            android:textSize="18sp" />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+    <!--    <androidx.cardview.widget.CardView-->
+<!--        android:id="@+id/ideal_box2"-->
+<!--        android:layout_width="380dp"-->
+<!--        android:layout_height="420dp"-->
+<!--        android:background="@drawable/box_ideal"-->
+<!--        android:gravity="center_vertical"-->
+<!--        >-->
+
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/profileImage2"-->
+<!--                android:layout_width="250dp"-->
+<!--                android:layout_height="250dp"-->
+<!--                android:layout_alignParentTop="true"-->
+<!--                android:layout_marginTop="30dp"-->
+<!--                app:srcCompat="@drawable/profile_image" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/user_name2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignBottom="@+id/profileImage2"-->
+<!--                android:layout_marginLeft="30dp"-->
+<!--                android:layout_marginBottom="-65dp"-->
+<!--                android:text="김사랑"-->
+<!--                android:textSize="35sp" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/user_age2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignBottom="@+id/profileImage2"-->
+<!--                android:layout_marginBottom="-60dp"-->
+<!--                android:layout_toEndOf="@+id/user_name2"-->
+<!--                android:text="  23세"-->
+<!--                android:textSize="20sp" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/hashtag_box3"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignBottom="@+id/user_name2"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginBottom="-60dp"-->
+<!--                android:background="@drawable/box_hastag" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignStart="@+id/hashtag_box3"-->
+<!--                android:layout_alignTop="@id/hashtag_box3"-->
+<!--                android:layout_alignEnd="@+id/hashtag_box3"-->
+<!--                android:layout_alignBottom="@+id/hashtag_box3"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginLeft="40dp"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:layout_marginBottom="5dp"-->
+<!--                android:text="#활발한"-->
+<!--                android:textSize="23sp" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/user_location2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignBottom="@+id/profileImage2"-->
+<!--                android:layout_marginBottom="-60dp"-->
+<!--                android:layout_toEndOf="@+id/user_job2"-->
+<!--                android:text="1.5km"-->
+<!--                android:textSize="20sp" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/user_job2"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignBottom="@+id/profileImage2"-->
+<!--                android:layout_marginBottom="-60dp"-->
+<!--                android:layout_toEndOf="@+id/user_age2"-->
+<!--                android:text=" 대학생 "-->
+<!--                android:textSize="20sp" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/hashtag_box4"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignBottom="@+id/user_name2"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginBottom="-60dp"-->
+<!--                android:layout_toEndOf="@+id/hashtag_box3"-->
+<!--                android:background="@drawable/box_hastag" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+
+<!--                android:layout_alignStart="@+id/hashtag_box4"-->
+<!--                android:layout_alignTop="@id/hashtag_box3"-->
+<!--                android:layout_alignEnd="@+id/hashtag_box4"-->
+<!--                android:layout_alignBottom="@+id/hashtag_box3"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginLeft="80dp"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:layout_marginBottom="5dp"-->
+<!--                android:text="#운동좋아"-->
+<!--                android:textSize="20sp" />-->
+
+<!--        </RelativeLayout>-->
+
+
+<!--    </androidx.cardview.widget.CardView>-->
+
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--        android:id="@+id/ideal_box2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@drawable/box_ideal"-->
+<!--        android:gravity="center_vertical"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/ideal_box"-->
+<!--        app:layout_constraintStart_toStartOf="@id/ideal_box"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/ideal_box">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/profileImage2"-->
+<!--            android:layout_width="250dp"-->
+<!--            android:layout_height="250dp"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            app:srcCompat="@drawable/profile_image"/>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/user_name2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignBottom="@+id/profileImage2"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:layout_marginBottom="-55dp"-->
+<!--            android:text="김사랑"-->
+<!--            android:textSize="35sp" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/user_age2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignBottom="@+id/profileImage2"-->
+<!--            android:layout_marginBottom="-50dp"-->
+<!--            android:layout_toEndOf="@+id/user_name2"-->
+<!--            android:text="  23세"-->
+<!--            android:textSize="20sp" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/user_job2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignBottom="@+id/profileImage2"-->
+<!--            android:layout_marginBottom="-50dp"-->
+<!--            android:layout_toEndOf="@+id/user_age2"-->
+<!--            android:text=" 대학생 "-->
+<!--            android:textSize="20sp" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/user_location2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignBottom="@+id/profileImage2"-->
+<!--            android:layout_marginBottom="-50dp"-->
+<!--            android:layout_toEndOf="@+id/user_job2"-->
+<!--            android:text="1.5km"-->
+<!--            android:textSize="20sp" />-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/hashtag_box3"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignBottom="@+id/user_name2"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:layout_marginBottom="-50dp"-->
+<!--            android:background="@drawable/box_hastag" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignStart="@+id/hashtag_box3"-->
+<!--            android:layout_alignTop="@id/hashtag_box3"-->
+<!--            android:layout_alignEnd="@+id/hashtag_box3"-->
+<!--            android:layout_alignBottom="@+id/hashtag_box3"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:layout_marginLeft="40dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginEnd="10dp"-->
+<!--            android:layout_marginBottom="5dp"-->
+<!--            android:text="#활발한"-->
+<!--            android:textSize="23sp" />-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/hashtag_box4"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignBottom="@+id/user_name2"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:layout_marginBottom="-50dp"-->
+<!--            android:layout_toEndOf="@+id/hashtag_box3"-->
+<!--            android:background="@drawable/box_hastag" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+
+<!--            android:layout_alignStart="@+id/hashtag_box4"-->
+<!--            android:layout_alignTop="@id/hashtag_box3"-->
+<!--            android:layout_alignEnd="@+id/hashtag_box4"-->
+<!--            android:layout_alignBottom="@+id/hashtag_box3"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:layout_marginLeft="80dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginEnd="10dp"-->
+<!--            android:layout_marginBottom="5dp"-->
+<!--            android:text="#운동좋아"-->
+<!--            android:textSize="20sp" />-->
+<!--    </androidx.cardview.widget.CardView>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
