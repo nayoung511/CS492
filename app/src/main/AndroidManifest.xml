@@ -110,6 +110,8 @@
         <activity android:name=".activity.SendQnaActivity"
             android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".activity.ReceiveQnaActivity"/>
+
+        <activity android:name=".activity.CategoryActivity"/>
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />

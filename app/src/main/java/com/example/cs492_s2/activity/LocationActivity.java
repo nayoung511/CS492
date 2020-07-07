@@ -78,6 +78,15 @@ public class LocationActivity extends AppCompatActivity {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_menu);
 
 
+        //카테고리 이동
+        category.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mystartActivity(CategoryActivity.class);
+            }
+        });
+
+
         //current palce intialize
         //initialize places
         Places.initialize(getApplicationContext(), "AIzaSyCaARwCHalrDoxNNpP976mWgbMamFg7Xkw");
