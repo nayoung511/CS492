@@ -24,6 +24,16 @@
     <string name="home_second">Home Second</string>
     <string name="title_activity_navigation">NavigationActivity</string>
 
+
+    <string name="prompt_age">나이를 선택하세요</string>
+    <string name="prompt_study">학력 선택하세요</string>
+    <string name="prompt_location">지역을 선택하세요</string>
+    <string name="prompt_marital">결혼 여부를 선택하세요</string>
+
+
+
+
+
     <string-array name="location_db">
         <item>대전광역시 동구 원동</item>
         <item>대전광역시 동구 인동</item>
@@ -201,5 +211,42 @@
         <item>대전광역시 대덕구 미호동</item>
 
 
+    </string-array>
+
+    <string-array name="age">
+        <item>선택</item>
+        <item>20세 미만</item>
+        <item>20~25세</item>
+        <item>26~30세</item>
+        <item>31~35세</item>
+        <item>36~40세</item>
+        <item>41~45세</item>
+        <item>46~50세</item>
+        <item>51세 이상</item>
+    </string-array>
+
+    <string-array name="height">
+        <item>선택</item>
+        <item>150cm 이하</item>
+        <item>150 ~ 160cm</item>
+        <item>161 ~ 170cm</item>
+        <item>171 ~ 180cm</item>
+        <item>180cm 이상</item>
+    </string-array>
+
+    <string-array name="study">
+        <item>선택</item>
+        <item>고졸</item>
+        <item>전문대졸</item>
+        <item>대졸</item>
+        <item>대학원졸</item>
+    </string-array>
+
+    <string-array name="marital">
+        <item>선택</item>
+        <item>미혼</item>
+        <item>싱글</item>
+        <item>자녀 없는</item>
+        <item>자녀 있는</item>
     </string-array>
 </resources>
