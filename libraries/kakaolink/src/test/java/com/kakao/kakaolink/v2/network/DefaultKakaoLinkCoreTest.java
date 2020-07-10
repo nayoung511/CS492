@@ -6,31 +6,28 @@ import android.net.Uri;
 
 import androidx.test.core.app.ApplicationProvider;
 
+import com.kakao.common.IConfiguration;
+import com.kakao.common.KakaoContextService;
+import com.kakao.common.PhaseInfo;
 import com.kakao.kakaolink.internal.KakaoTalkLinkProtocol;
 import com.kakao.kakaolink.v2.KakaoLinkTestHelper;
 import com.kakao.test.common.KakaoTestCase;
 import com.kakao.test.common.TestAppConfiguration;
 import com.kakao.test.common.TestKakaoUtilService;
 import com.kakao.test.common.TestPhaseInfo;
-import com.kakao.common.IConfiguration;
-import com.kakao.common.KakaoContextService;
 import com.kakao.util.KakaoUtilService;
-import com.kakao.common.PhaseInfo;
 import com.kakao.util.exception.KakaoException;
 import com.kakao.util.helper.CommonProtocol;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 import java.util.HashMap;
 import java.util.Map;
-
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;

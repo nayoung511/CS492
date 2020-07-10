@@ -3,10 +3,9 @@ package com.kakao.network;
 import android.net.Uri;
 import android.os.Build;
 
+import com.kakao.common.IConfiguration;
 import com.kakao.common.PhaseInfo;
 import com.kakao.network.multipart.Part;
-import com.kakao.common.IConfiguration;
-
 import com.kakao.util.helper.CommonProtocol;
 
 import java.util.ArrayList;

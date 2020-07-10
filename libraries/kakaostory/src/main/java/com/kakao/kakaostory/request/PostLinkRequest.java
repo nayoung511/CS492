@@ -17,8 +17,8 @@ package com.kakao.kakaostory.request;
 
 import android.net.Uri;
 
-import com.kakao.network.ServerProtocol;
 import com.kakao.kakaostory.StringSet;
+import com.kakao.network.ServerProtocol;
 import com.kakao.util.exception.ParameterMissingException;
 
 import java.util.Map;

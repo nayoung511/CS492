@@ -20,10 +20,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.kakao.auth.Session;
-import com.kakao.usermgmt.callback.MeV2ResponseCallback;
-import com.kakao.util.helper.SharedPreferencesCache;
 import com.kakao.network.response.ResponseBody;
 import com.kakao.usermgmt.StringSet;
+import com.kakao.usermgmt.callback.MeV2ResponseCallback;
+import com.kakao.util.helper.SharedPreferencesCache;
 
 import java.util.HashMap;
 import java.util.List;

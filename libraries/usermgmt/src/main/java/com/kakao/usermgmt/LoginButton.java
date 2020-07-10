@@ -20,10 +20,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.os.Build;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -39,6 +35,9 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.kakao.auth.AuthType;
 import com.kakao.auth.KakaoSDK;

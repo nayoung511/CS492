@@ -5,11 +5,10 @@ import android.net.Uri;
 
 import androidx.browser.customtabs.CustomTabsIntent;
 
+import com.kakao.common.IConfiguration;
 import com.kakao.common.KakaoContextService;
 import com.kakao.common.PhaseInfo;
 import com.kakao.common.ServerProtocol;
-import com.kakao.common.IConfiguration;
-
 import com.kakao.util.exception.KakaoException;
 
 /**

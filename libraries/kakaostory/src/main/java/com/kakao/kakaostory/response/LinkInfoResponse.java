@@ -15,9 +15,9 @@
  */
 package com.kakao.kakaostory.response;
 
+import com.kakao.kakaostory.StringSet;
 import com.kakao.network.response.ApiResponseStatusError;
 import com.kakao.network.response.JSONObjectResponse;
-import com.kakao.kakaostory.StringSet;
 import com.kakao.network.response.ResponseBody;
 import com.kakao.network.response.ResponseData;
 import com.kakao.network.response.ResponseStringConverter;

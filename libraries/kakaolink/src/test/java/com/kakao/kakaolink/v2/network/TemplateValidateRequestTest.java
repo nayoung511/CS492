@@ -2,12 +2,12 @@ package com.kakao.kakaolink.v2.network;
 
 import android.net.Uri;
 
-import com.kakao.test.common.TestAppConfiguration;
-import com.kakao.test.common.TestPhaseInfo;
 import com.kakao.common.IConfiguration;
 import com.kakao.common.PhaseInfo;
 import com.kakao.network.ServerProtocol;
 import com.kakao.test.common.KakaoTestCase;
+import com.kakao.test.common.TestAppConfiguration;
+import com.kakao.test.common.TestPhaseInfo;
 
 import org.junit.Before;
 import org.junit.Test;

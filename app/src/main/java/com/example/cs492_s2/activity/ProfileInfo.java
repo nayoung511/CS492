@@ -1,25 +1,30 @@
 package com.example.cs492_s2.activity;
 
+import java.util.Collections;
+import java.util.List;
+
 public class ProfileInfo {
-    //private String photoUrl;
+    private String photoUrl;
     private String job;
-    private String personality;
-    private String unique;
+    private List<String> personality;
+    private List<String> unique;
     private String self_intro;
 
 
-    public ProfileInfo(String job, String personality, String unique, String self_intro){
-        //this.photoUrl = photoUrl;
+    public ProfileInfo(String photoUrl, String job, String personality, String unique, String self_intro){
+        this.photoUrl = photoUrl;
         this.job = job;
-        this.personality = personality;
-        this.unique = unique;
+        this.personality = Collections.singletonList(personality);
+        this.unique = Collections.singletonList(unique);
         this.self_intro = self_intro;
     }
 
-//    public String getPhotoUrl(){
-//        return this.photoUrl;
-//    }
-//    public void setPhotoUrl(String photoUrl){this.photoUrl = photoUrl;}
+    public ProfileInfo(String photo, String job, List<String> box_personality, List<String> box_hobby, String self_intro) {
+    }
+
+    public String getPhotoUrl(){ return this.photoUrl; }
+
+    public void setPhotoUrl(String photoUrl){this.photoUrl = photoUrl;}
 
     public String getJob() {
         return job;
@@ -29,20 +34,20 @@ public class ProfileInfo {
         this.job = job;
     }
 
-    public String getPersonality() {
+    public List<String> getPersonality() {
         return personality;
     }
 
     public void setPersonality(String personality) {
-        this.personality = personality;
+        this.personality = Collections.singletonList(personality);
     }
 
-    public String getUnique() {
+    public List<String> getUnique() {
         return unique;
     }
 
     public void setUnique(String unique) {
-        this.unique = unique;
+        this.unique = Collections.singletonList(unique);
     }
 
     public String getSelf_intro() {

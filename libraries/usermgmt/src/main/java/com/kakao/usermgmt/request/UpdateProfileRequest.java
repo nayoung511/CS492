@@ -17,8 +17,8 @@ package com.kakao.usermgmt.request;
 
 import android.net.Uri;
 
-import com.kakao.network.ServerProtocol;
 import com.kakao.auth.network.AuthorizedApiRequest;
+import com.kakao.network.ServerProtocol;
 import com.kakao.usermgmt.StringSet;
 
 import org.json.JSONObject;

@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.kakao.common.KakaoContextService;
 import com.kakao.message.template.TemplateParams;
 import com.kakao.network.IRequest;
-import com.kakao.common.KakaoContextService;
 import com.kakao.util.KakaoUtilService;
 import com.kakao.util.exception.KakaoException;
 

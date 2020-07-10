@@ -16,6 +16,7 @@
 package com.kakao.kakaotalk.request;
 
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 
 import com.kakao.auth.network.AuthorizedApiRequest;

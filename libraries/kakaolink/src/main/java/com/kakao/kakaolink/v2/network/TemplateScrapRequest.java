@@ -17,10 +17,10 @@ package com.kakao.kakaolink.v2.network;
 
 import android.net.Uri;
 
-import com.kakao.kakaolink.internal.KakaoTalkLinkProtocol;
-import com.kakao.network.ServerProtocol;
 import com.kakao.common.IConfiguration;
 import com.kakao.common.PhaseInfo;
+import com.kakao.kakaolink.internal.KakaoTalkLinkProtocol;
+import com.kakao.network.ServerProtocol;
 
 import java.util.Map;
 

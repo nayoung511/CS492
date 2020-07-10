@@ -1,24 +1,53 @@
 package com.example.cs492_s2.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import com.example.cs492_s2.R;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
+    //profile Image
+    private Uri imgUri, photoURI, albumURI;
+    private String mCurrentPhotoPath;
+    private static final int FROM_CAMERA = 0;
+    private static final int FROM_ALBUM = 1;
+    ImageView img_profile;
+    int flag;
+
     //personality_func
     int count_personality = 0;
     List<String> box_personality=new ArrayList<String>();
@@ -39,7 +68,6 @@ public class ProfileActivity extends AppCompatActivity {
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    DocumentReference documentReference = db.collection("qna").document(user.getUid());
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -47,6 +75,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         Button btn_save_profile = findViewById(R.id.btn_save_profile);
+        img_profile = findViewById(R.id.img_profile);
 
         //personality button
         final Button btn_p1 = findViewById(R.id.profile_p1);
@@ -727,57 +756,132 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        //profile image upload
+        img_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               // if clicked, show the alert
+                imgDialog();
+            }
+        });
 
 
         //upload to firebase
         btn_save_profile.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                //updateProfile();
+                updateProfile();
                 Log.e("profile activity_personality", box_personality.get(0) + " "+ box_personality.get(1) + " " + box_personality.get(2));
                 Log.e("profile activity_hobby", box_hobby.get(0) + " "+ box_hobby.get(1) + " " + box_hobby.get(2));
-                //mystartActivity(SendQnaActivity.class);
+                mystartActivity(SendQnaActivity.class);
             }
         });
 
-                /*
-                documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if(task.isSuccessful()){
-                            DocumentSnapshot doc = task.getResult();
-                            if(doc.exists()){
-                                //if user already updated qna;
-                                mystartActivity(LocationActivity.class);
-                            }else{
-                                mystartActivity(SendQnaActivity.class);
-                            }
-                        }
-                    }
-                });
-                mystartActivity(LocationActivity.class);
-            }
-            */
-
-
-
-
     }
 
-//    public void updateProfile(){
-//        final String job = ((EditText)findViewById(R.id.input_profile_job)).getText().toString();
-//        final String personality = ((EditText)findViewById(R.id.input_profile_personality)).getText().toString();
-//        final String unique = ((EditText)findViewById(R.id.input_profile_char)).getText().toString();
-//        final String self_intro = ((EditText)findViewById(R.id.input_self_intro)).getText().toString();
+    public void updateProfile(){
+        final String photo;
+        final String job = ((EditText)findViewById(R.id.input_profile_job)).getText().toString();
+        final String self_intro = ((EditText)findViewById(R.id.input_self_intro)).getText().toString();
+
+        if(job.length() > 0 && self_intro.length() > 0 && box_personality.size() > 0 && box_hobby.size() > 0){
+            //check if the condition satisfies
+            if(self_intro.length() > 100) {
+                startToast("100자 이하로 작성해 주세요. ");
+            }
+            if(box_personality.size() != 3){
+                startToast("3가지 성격을 선택해 주세요.");
+            }
+            if(box_hobby.size() != 3){
+                startToast("3가지 취미를 선택해 주세요.");
+            }
+            else{
+                //upload profile photo
+//                final String cu = user.getUid();
+//                String filename = cu + "_" + System.currentTimeMillis();
+                FirebaseStorage storage = FirebaseStorage.getInstance();
+                StorageReference storageRef = storage.getReference();
+                final StorageReference storageReference = storageRef.child("users/"+ user.getUid()+"/profileImage.jpg");
+
+                try{
+                    InputStream stream = new FileInputStream(new File(mCurrentPhotoPath));
+                    UploadTask uploadTask = storageRef.putStream(stream);
+                    uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                        @Override
+                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                            if(!task.isSuccessful()){
+                                throw task.getException();
+                            }
+                            return storageReference.getDownloadUrl();
+                        }
+                    }).addOnCompleteListener(new OnCompleteListener<Uri>(){
+                        @Override
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            if(task.isSuccessful()){
+                                Uri photo = task.getResult();
+//                                private String photoUrl;
+//                                private String job;
+//                                private List<String> personality;
+//                                private List<String> unique;
+//                                private String self_intro;
+                                ProfileInfo profileInfo = new ProfileInfo(photo.toString(), job, box_personality, box_hobby, self_intro);
+                                db.collection("profile").document(user.getUid()).set(profileInfo)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void avoid){
+                                                startToast("프로필 정보 등록을 성공했어요.");
+                                                finish();
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                startToast("회원정보 등록에 실패했어요.");
+                                            }
+                                        });
+                            }else{
+                                Log.e("프로필엑티비티", "에러 났어요.");
+                            }
+                        }
+                    });
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
 //
-//        if(job.length() > 0 && personality.length()> 0 && unique.length() > 0 && self_intro.length()>0){
-//            if(self_intro.length() >100) {
-//                startToast("100자 이하로 작성해 주세요. ");
-//            }else{
+//                //storage.getReferenceFromUrl("cs492-sc2-b268e").child(user.getUid()).child("profileImage/"+filename);
+//                UploadTask uploadTask = null;
 //
-//                ProfileInfo profileInfo = new ProfileInfo(job, personality, unique, self_intro);
+//                Uri file = null;
+//                if(flag == 0){
+//                    file = Uri.fromFile(new File(mCurrentPhotoPath));
+//                }else if(flag == 1){
+//                    file = photoURI;
+//                }
+//                uploadTask = storageReference.putFile(file);
+//
 //                if(user != null){
-//                    db.collection("profile").document(user.getUid()).set(profileInfo)
+//                    Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+//                        @Override
+//                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+//                            if(!task.isSuccessful()){
+//                                throw task.getException();
+//                            }
+//                            return storageReference.getDownloadUrl();
+//                        }
+//                    }).addOnCompleteListener(new OnCompleteListener<Uri>(){
+//                        @Override
+//                        public void onComplete(@NonNull Task<Uri> task) {
+//                            if(task.isSuccessful()){
+//                                Uri photo = task.getResult();
+//                            }else{
+//                                Log.e("프로필엑티비티", "에러 났어요.");
+//                            }
+//                        }
+//                    });
+//                    ProfileInfo profileInfo = new ProfileInfo(photo, job, box_personality, box_hobby, self_intro);
+//                    db.collection("My Profile").document(user.getUid()).set(profileInfo)
 //                            .addOnSuccessListener(new OnSuccessListener<Void>() {
 //                                @Override
 //                                public void onSuccess(Void aVoid) {
@@ -793,10 +897,139 @@ public class ProfileActivity extends AppCompatActivity {
 //                            });
 //                }
 //            }
-//        }else{
-//            startToast("프로필 정보를 입력해주세요. ");
-//        }
-//    }
+        }}else{
+            startToast("프로필 정보를 입력해주세요. ");
+        }
+    }
+
+
+    //프로필 이미지 업로드 선택
+    private void imgDialog(){
+        AlertDialog.Builder alt_bld = new AlertDialog.Builder(ProfileActivity.this);
+        alt_bld.setTitle("프로필 사진 업로드")
+                .setPositiveButton("사진촬영", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        flag = 0;
+                        cameraActivity();
+                    }
+                })
+                .setNeutralButton("앨범선택", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        flag = 1;
+                        galleryActivity();
+                    }
+                })
+                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                AlertDialog alertDialog = alt_bld.create();
+                alertDialog.show();
+    }
+
+
+    //카메라 실행
+    private void cameraActivity(){
+        Log.e("프로필", "카메라 실행");
+        String state = Environment.getExternalStorageState();
+        if(Environment.MEDIA_MOUNTED.equals(state)){
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if(intent.resolveActivity(getPackageManager())!= null){
+                File photoFile = null;
+                try{
+                    photoFile = createImageFile();
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+                if(photoFile!=null){
+                    Uri providerURI = FileProvider.getUriForFile(this, getPackageName(), photoFile);
+                    imgUri = providerURI;
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT, providerURI);
+                    startActivityForResult(intent, FROM_CAMERA);
+                }
+            }
+        }else{
+            startToast("권한을 허용해 주세요.");
+        }
+    }
+
+    //이미지 생성
+    public File createImageFile() throws IOException {
+        String imgFileName = System.currentTimeMillis() + ".jpg";
+        File imgFile = null;
+        File storageDir = new File(Environment.getExternalStorageDirectory() + "/Pictures", "ireh");
+
+        if(!storageDir.exists()){
+            storageDir.mkdirs();
+        }
+        imgFile = new File(storageDir, imgFileName);
+        mCurrentPhotoPath = imgFile.getAbsolutePath();
+
+        return imgFile;
+    }
+
+    //찍은 사진을 갤러리에 저장
+    public void galleryAddPic(){
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(mCurrentPhotoPath);
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        sendBroadcast(mediaScanIntent);
+        startToast("사진이 갤러리에 저장되었어요.");
+    }
+
+
+    //갤러리에서 사진 가져오기
+    private void galleryActivity(){
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
+        intent.setType("image/*");
+        startActivityForResult(intent, FROM_ALBUM);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != RESULT_OK) {
+            return;
+        }
+        switch (requestCode) {
+            case FROM_ALBUM: {
+                Log.e("프로필", "앨범에서 사진가져오기");
+                if (data.getData() != null){
+                    try{
+                        File albumFile = null;
+                        albumFile = createImageFile();
+                        photoURI = data.getData();
+                        albumURI = Uri.fromFile(albumFile);
+                        galleryAddPic();
+                        //프로필 이미지에 띄우기
+                        img_profile.setImageURI(photoURI);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Log.e("profileAct", "에러났어요.");
+                    }
+                }
+                break;
+            }
+            case FROM_CAMERA: {
+                //take a photo
+                try{
+                    galleryAddPic();
+                    //프로필 이미지에 띄우기
+                    img_profile.setImageURI(imgUri);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
+    }
+
 
     //클릭시 버튼을 다른 배경으로 바꿔준다.
     private void clickPersonality(Button btn){

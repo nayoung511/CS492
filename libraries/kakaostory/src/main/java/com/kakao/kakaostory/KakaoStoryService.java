@@ -15,18 +15,18 @@
  */
 package com.kakao.kakaostory;
 
-import com.kakao.kakaostory.api.KakaoStoryApi;
-import com.kakao.network.ServerProtocol;
-import com.kakao.network.tasks.ITaskQueue;
-import com.kakao.network.tasks.KakaoResultTask;
-import com.kakao.network.tasks.KakaoTaskQueue;
 import com.kakao.friends.FriendContext;
 import com.kakao.friends.response.FriendsResponse;
+import com.kakao.kakaostory.api.KakaoStoryApi;
 import com.kakao.kakaostory.callback.StoryResponseCallback;
 import com.kakao.kakaostory.request.PostRequest.StoryPermission;
 import com.kakao.kakaostory.response.LinkInfoResponse;
 import com.kakao.kakaostory.response.ProfileResponse;
 import com.kakao.kakaostory.response.model.MyStoryInfo;
+import com.kakao.network.ServerProtocol;
+import com.kakao.network.tasks.ITaskQueue;
+import com.kakao.network.tasks.KakaoResultTask;
+import com.kakao.network.tasks.KakaoTaskQueue;
 import com.kakao.util.KakaoParameterException;
 import com.kakao.util.KakaoParameterException.ERROR_CODE;
 import com.kakao.util.helper.Utility;

@@ -3,18 +3,19 @@ package com.kakao.push.request;
 import android.net.Uri;
 
 import com.kakao.auth.network.AuthorizedRequest;
+import com.kakao.common.IConfiguration;
+import com.kakao.common.PhaseInfo;
 import com.kakao.network.ServerProtocol;
 import com.kakao.push.StringSet;
 import com.kakao.test.common.KakaoTestCase;
 import com.kakao.test.common.TestAppConfiguration;
 import com.kakao.test.common.TestPhaseInfo;
-import com.kakao.common.IConfiguration;
-import com.kakao.common.PhaseInfo;
 import com.kakao.util.helper.CommonProtocol;
 
 import org.junit.Test;
 
 import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**

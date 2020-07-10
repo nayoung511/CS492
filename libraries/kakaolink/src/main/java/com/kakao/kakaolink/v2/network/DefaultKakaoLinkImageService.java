@@ -2,8 +2,8 @@ package com.kakao.kakaolink.v2.network;
 
 import android.content.Context;
 
-import com.kakao.network.IRequest;
 import com.kakao.common.KakaoContextService;
+import com.kakao.network.IRequest;
 
 import java.io.File;
 

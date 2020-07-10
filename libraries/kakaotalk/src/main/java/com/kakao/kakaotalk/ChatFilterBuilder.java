@@ -15,10 +15,10 @@
  */
 package com.kakao.kakaotalk;
 
+import com.kakao.util.helper.log.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.kakao.util.helper.log.Logger;
 
 /**
  * 권한이 있는 채팅방의 리스트중, 내가 얻어올 수 있는 채팅방의 목록을 filtering 하기위해 필요한 데이터를 만들어주는 wrapper class.

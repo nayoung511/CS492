@@ -15,9 +15,9 @@
  */
 package com.kakao.kakaostory.response;
 
-import com.kakao.network.response.JSONObjectResponse;
 import com.kakao.kakaostory.StringSet;
 import com.kakao.kakaostory.response.model.StoryProfile;
+import com.kakao.network.response.JSONObjectResponse;
 import com.kakao.network.response.ResponseBody;
 import com.kakao.network.response.ResponseStringConverter;
 import com.kakao.util.helper.log.Logger;

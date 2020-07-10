@@ -1,6 +1,7 @@
 package com.kakao.kakaotalk.request;
 
 import android.net.Uri;
+
 import androidx.annotation.Nullable;
 
 import com.kakao.kakaotalk.StringSet;

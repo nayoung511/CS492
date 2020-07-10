@@ -1,14 +1,15 @@
 package com.kakao.kakaolink.v2.network;
 
+import com.kakao.common.IConfiguration;
+import com.kakao.common.PhaseInfo;
 import com.kakao.test.common.KakaoTestCase;
 import com.kakao.test.common.TestAppConfiguration;
 import com.kakao.test.common.TestPhaseInfo;
-import com.kakao.common.IConfiguration;
-import com.kakao.common.PhaseInfo;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author kevin.kang. Created on 2017. 3. 14..

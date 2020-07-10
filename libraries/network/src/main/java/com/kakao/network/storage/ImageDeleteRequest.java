@@ -2,10 +2,10 @@ package com.kakao.network.storage;
 
 import android.net.Uri;
 
-import com.kakao.network.ApiRequest;
-import com.kakao.network.ServerProtocol;
 import com.kakao.common.IConfiguration;
 import com.kakao.common.PhaseInfo;
+import com.kakao.network.ApiRequest;
+import com.kakao.network.ServerProtocol;
 
 /**
  * @author kevin.kang. Created on 2017. 3. 20..

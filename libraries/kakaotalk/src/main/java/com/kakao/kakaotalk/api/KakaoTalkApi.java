@@ -18,9 +18,6 @@ package com.kakao.kakaotalk.api;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.util.List;
-import java.util.Map;
-
 import com.kakao.auth.common.MessageSendable;
 import com.kakao.auth.network.AuthNetworkService;
 import com.kakao.auth.network.AuthorizedRequest;
@@ -29,7 +26,9 @@ import com.kakao.friends.FriendContext;
 import com.kakao.friends.api.FriendsApi;
 import com.kakao.friends.response.AppFriendsResponse;
 import com.kakao.friends.response.FriendsResponse;
+import com.kakao.kakaotalk.ChatListContext;
 import com.kakao.kakaotalk.request.ChatMembersRequest;
+import com.kakao.kakaotalk.request.ChatRoomListRequest;
 import com.kakao.kakaotalk.request.CustomMessageBroadcastRequest;
 import com.kakao.kakaotalk.request.DefaultMemoRequest;
 import com.kakao.kakaotalk.request.DefaultMessageBroadcastRequest;
@@ -39,17 +38,18 @@ import com.kakao.kakaotalk.request.ScrapMessageBroadcastRequest;
 import com.kakao.kakaotalk.request.ScrapTemplateRequest;
 import com.kakao.kakaotalk.request.SendMemoRequest;
 import com.kakao.kakaotalk.request.SendMessageRequest;
-import com.kakao.kakaotalk.response.ChatMembersResponse;
-import com.kakao.kakaotalk.response.MessageSendResponse;
-import com.kakao.kakaotalk.response.PlusFriendsResponse;
-import com.kakao.network.response.BlankApiResponse;
-import com.kakao.kakaotalk.ChatListContext;
-import com.kakao.kakaotalk.request.ChatRoomListRequest;
 import com.kakao.kakaotalk.request.TalkProfileRequest;
 import com.kakao.kakaotalk.response.ChatListResponse;
+import com.kakao.kakaotalk.response.ChatMembersResponse;
 import com.kakao.kakaotalk.response.KakaoTalkProfile;
+import com.kakao.kakaotalk.response.MessageSendResponse;
+import com.kakao.kakaotalk.response.PlusFriendsResponse;
 import com.kakao.kakaotalk.response.TalkProfileResponse;
 import com.kakao.message.template.TemplateParams;
+import com.kakao.network.response.BlankApiResponse;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 카카오톡 API 요청을 담당한다.

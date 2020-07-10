@@ -17,8 +17,8 @@ package com.kakao.push.request;
 
 import android.net.Uri;
 
-import com.kakao.network.ServerProtocol;
 import com.kakao.auth.network.AuthorizedApiRequest;
+import com.kakao.network.ServerProtocol;
 
 /**
  * @author leoshin, created at 15. 8. 10..

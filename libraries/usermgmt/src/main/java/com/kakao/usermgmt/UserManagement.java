@@ -17,12 +17,6 @@ package com.kakao.usermgmt;
 
 import android.app.Activity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.Future;
-
 import com.kakao.auth.AccessTokenCallback;
 import com.kakao.auth.ApiResponseCallback;
 import com.kakao.auth.AuthService.AgeLimit;
@@ -40,6 +34,12 @@ import com.kakao.usermgmt.response.AgeAuthResponse;
 import com.kakao.usermgmt.response.MeV2Response;
 import com.kakao.usermgmt.response.ServiceTermsResponse;
 import com.kakao.usermgmt.response.ShippingAddressResponse;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.Future;
 
 /**
  * UserManagement API 요청을 담당한다.

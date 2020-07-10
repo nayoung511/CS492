@@ -17,6 +17,7 @@ package com.kakao.kakaotalk.response.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
 import androidx.annotation.Nullable;
 
 import com.kakao.auth.common.MessageSendable;

@@ -6,8 +6,8 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.kakao.kakaolink.v2.mocks.TestKakaoLinkImageService;
 import com.kakao.kakaolink.v2.mocks.TestKakaoLinkCore;
+import com.kakao.kakaolink.v2.mocks.TestKakaoLinkImageService;
 import com.kakao.kakaolink.v2.network.KakaoLinkCore;
 import com.kakao.kakaolink.v2.network.KakaoLinkImageService;
 import com.kakao.network.ErrorResult;

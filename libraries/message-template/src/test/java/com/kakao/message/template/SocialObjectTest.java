@@ -3,6 +3,7 @@ package com.kakao.message.template;
 import com.kakao.test.common.KakaoTestCase;
 
 import org.junit.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 /**
  * @author kevin.kang. Created on 2017. 3. 14..

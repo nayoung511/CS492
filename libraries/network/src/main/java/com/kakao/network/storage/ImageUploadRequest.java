@@ -2,13 +2,13 @@ package com.kakao.network.storage;
 
 import android.net.Uri;
 
+import com.kakao.common.IConfiguration;
 import com.kakao.common.PhaseInfo;
 import com.kakao.network.ApiRequest;
 import com.kakao.network.ServerProtocol;
 import com.kakao.network.StringSet;
 import com.kakao.network.multipart.FilePart;
 import com.kakao.network.multipart.Part;
-import com.kakao.common.IConfiguration;
 
 import java.io.File;
 import java.util.List;

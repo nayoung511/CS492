@@ -17,9 +17,9 @@ package com.kakao.kakaostory.request;
 
 import android.net.Uri;
 
-import com.kakao.network.ServerProtocol;
 import com.kakao.auth.network.AuthorizedApiRequest;
 import com.kakao.kakaostory.StringSet;
+import com.kakao.network.ServerProtocol;
 
 /**
  * @author leoshin, created at 15. 8. 4..

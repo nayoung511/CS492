@@ -107,6 +107,7 @@
 
         <activity android:name=".activity.ProfileActivity"
             android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".activity.ProfileEstActivity"/>
         <activity android:name=".activity.SendQnaActivity"
             android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".activity.ReceiveQnaActivity"/>

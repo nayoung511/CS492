@@ -15,11 +15,11 @@
  */
 package com.kakao.kakaotalk.response;
 
+import com.kakao.friends.StringSet;
 import com.kakao.kakaotalk.ChatListContext;
 import com.kakao.kakaotalk.callback.TalkResponseCallback;
-import com.kakao.network.response.JSONObjectResponse;
-import com.kakao.friends.StringSet;
 import com.kakao.kakaotalk.response.model.ChatInfo;
+import com.kakao.network.response.JSONObjectResponse;
 import com.kakao.network.response.ResponseBody;
 import com.kakao.network.response.ResponseStringConverter;
 

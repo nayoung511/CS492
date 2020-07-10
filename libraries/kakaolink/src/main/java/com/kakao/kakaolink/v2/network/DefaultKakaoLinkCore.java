@@ -19,18 +19,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.kakao.common.IConfiguration;
+import com.kakao.common.KakaoContextService;
+import com.kakao.common.PhaseInfo;
 import com.kakao.kakaolink.R;
 import com.kakao.kakaolink.internal.KakaoTalkLinkProtocol;
 import com.kakao.message.template.TemplateParams;
 import com.kakao.network.IRequest;
 import com.kakao.network.ServerProtocol;
-import com.kakao.common.IConfiguration;
-import com.kakao.common.KakaoContextService;
-import com.kakao.common.PhaseInfo;
+import com.kakao.util.KakaoUtilService;
 import com.kakao.util.exception.KakaoException;
 import com.kakao.util.helper.CommonProtocol;
 import com.kakao.util.helper.log.Logger;
-import com.kakao.util.KakaoUtilService;
 
 import org.json.JSONException;
 import org.json.JSONObject;

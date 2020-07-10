@@ -77,6 +77,7 @@ public class MemberinitActivity extends AppCompatActivity {
                     //startToast("확인을 누르셨습니다 ");
                     //profileUpdate();
                     //메인 서치 화면으로 이동
+                    Log.e("멤버이닛", "이동");
                     mystartActivity(ProfileActivity.class);
                     break;
                 case R.id.view_profileImage:

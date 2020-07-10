@@ -18,8 +18,8 @@ package com.kakao.kakaostory.request;
 import android.net.Uri;
 
 import com.kakao.auth.StringSet;
-import com.kakao.network.ServerProtocol;
 import com.kakao.auth.network.AuthorizedApiRequest;
+import com.kakao.network.ServerProtocol;
 import com.kakao.network.multipart.FilePart;
 import com.kakao.network.multipart.Part;
 
