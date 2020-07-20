@@ -66,7 +66,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
 
         holder.TextView_nickname.setText(chat.getNickname());
         holder.TextView_msg.setText("   " + chat.getMsg());
-        holder.profile_chat.setImageResource(R.drawable.chat_image);
+        holder.profile_chat.setImageResource(R.drawable.profile_image_copy);
 
         if(chat.getNickname().equals(this.myNickName)) {
             holder.TextView_msg.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);

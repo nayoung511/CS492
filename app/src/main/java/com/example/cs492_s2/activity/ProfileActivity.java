@@ -41,6 +41,7 @@ import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
     //profile Image
+    private String profilePath;
     private Uri imgUri, photoURI, albumURI;
     private String mCurrentPhotoPath;
     private static final int FROM_CAMERA = 0;
@@ -780,7 +781,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void updateProfile(){
-        final String photo;
+        final String photo = null;
         final String job = ((EditText)findViewById(R.id.input_profile_job)).getText().toString();
         final String self_intro = ((EditText)findViewById(R.id.input_self_intro)).getText().toString();
 
@@ -796,12 +797,17 @@ public class ProfileActivity extends AppCompatActivity {
                 startToast("3가지 취미를 선택해 주세요.");
             }
             else{
-                //upload profile photo
-//                final String cu = user.getUid();
-//                String filename = cu + "_" + System.currentTimeMillis();
                 FirebaseStorage storage = FirebaseStorage.getInstance();
                 StorageReference storageRef = storage.getReference();
                 final StorageReference storageReference = storageRef.child("users/"+ user.getUid()+"/profileImage.jpg");
+
+                if(profilePath == null){
+                    ProfileInfo profileInfo = new ProfileInfo(photo, job, box_personality, box_hobby, self_intro);
+
+                }
+                //upload profile photo
+//                final String cu = user.getUid();
+//                String filename = cu + "_" + System.currentTimeMillis();
 
                 try{
                     InputStream stream = new FileInputStream(new File(mCurrentPhotoPath));
@@ -825,20 +831,7 @@ public class ProfileActivity extends AppCompatActivity {
 //                                private List<String> unique;
 //                                private String self_intro;
                                 ProfileInfo profileInfo = new ProfileInfo(photo.toString(), job, box_personality, box_hobby, self_intro);
-                                db.collection("profile").document(user.getUid()).set(profileInfo)
-                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void avoid){
-                                                startToast("프로필 정보 등록을 성공했어요.");
-                                                finish();
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                startToast("회원정보 등록에 실패했어요.");
-                                            }
-                                        });
+
                             }else{
                                 Log.e("프로필엑티비티", "에러 났어요.");
                             }
@@ -900,6 +893,23 @@ public class ProfileActivity extends AppCompatActivity {
         }}else{
             startToast("프로필 정보를 입력해주세요. ");
         }
+    }
+
+    private void upload(ProfileInfo profileInfo){
+        db.collection("profile").document(user.getUid()).set(profileInfo)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void avoid){
+                        startToast("프로필 정보 등록을 성공했어요.");
+                        finish();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        startToast("회원정보 등록에 실패했어요.");
+                    }
+                });
     }
 
 
@@ -999,6 +1009,7 @@ public class ProfileActivity extends AppCompatActivity {
         }
         switch (requestCode) {
             case FROM_ALBUM: {
+                profilePath = data.getStringExtra("profilePath");
                 Log.e("프로필", "앨범에서 사진가져오기");
                 if (data.getData() != null){
                     try{
@@ -1017,6 +1028,7 @@ public class ProfileActivity extends AppCompatActivity {
                 break;
             }
             case FROM_CAMERA: {
+                profilePath = data.getStringExtra("profilePath");
                 //take a photo
                 try{
                     galleryAddPic();

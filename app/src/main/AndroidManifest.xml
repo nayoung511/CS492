@@ -26,12 +26,6 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
-        <service
-            android:name=".activity.AdminPushMessageActivity"
-            android:enabled="true"
-            android:exported="true">
-
-        </service>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -113,6 +107,19 @@
         <activity android:name=".activity.ReceiveQnaActivity"/>
 
         <activity android:name=".activity.CategoryActivity"/>
+
+
+        <!--popup-->
+        <activity
+            android:name=".activity.Popup_someoneLike"
+            android:theme="@android:style/Theme.Dialog"/>
+
+
+
+
+
+
+
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />

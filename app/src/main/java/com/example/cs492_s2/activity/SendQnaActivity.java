@@ -2,7 +2,6 @@ package com.example.cs492_s2.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -55,9 +54,8 @@ public class SendQnaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //만들어둔 정보를 올리고
-                //uploadQna();
+                uploadQna();
                 //location Activity로 이동합니다.
-                Log.e("채팅", "왜 안돼 ");
                 //mystartActivity(ReceiveQnaActivity.class);
                 mystartActivity(LocationActivity.class);
                 //mystartActivity(ChatActivity.class);

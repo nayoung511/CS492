@@ -2,7 +2,6 @@ package com.example.cs492_s2.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,8 +28,6 @@ public class IdealListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Log.e("아이디얼", "왜이래용");
 
         setContentView(R.layout.activity_ideallist);
 

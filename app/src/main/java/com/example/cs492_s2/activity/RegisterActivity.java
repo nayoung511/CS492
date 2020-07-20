@@ -33,7 +33,6 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         mAthu = FirebaseAuth.getInstance();
-
         findViewById(R.id.btn_register).setOnClickListener(onClickListener);
         findViewById(R.id.gotoLoginButton).setOnClickListener(onClickListener);
 
