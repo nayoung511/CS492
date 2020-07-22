@@ -249,4 +249,5 @@
         <item>자녀 없는</item>
         <item>자녀 있는</item>
     </string-array>
+    <string name="title_activity_drawer">DrawerActivity</string>
 </resources>
