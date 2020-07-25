@@ -24,11 +24,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true" >
-        <activity
-            android:name=".activity.DrawerActivity"
-            android:label="@string/title_activity_drawer"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -99,16 +94,28 @@
         <activity android:name=".activity.LocationParsing" />
         <activity
             android:name=".activity.ProfileActivity"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".activity.ProfileEstActivity" />
         <activity
             android:name=".activity.SendQnaActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".activity.ReceiveQnaActivity" />
-        <activity android:name=".activity.CategoryActivity" /> <!-- popup -->
+        <activity android:name=".activity.CategoryActivity" />
+
+        <!--crop-->
+        <activity
+            android:name=".activity.CropImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+
+        <!-- popup -->
         <activity
             android:name=".activity.Popup_someoneLike"
             android:theme="@android:style/Theme.Dialog" />
+
+
+
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"

@@ -31,6 +31,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.soundcloud.android.crop.Crop;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -51,6 +52,7 @@ public class ProfileActivity extends AppCompatActivity {
     private static final int FROM_ALBUM = 1;
     ImageView img_profile;
     int flag;
+    private File tempFile;
 
     //personality_func
     int count_personality = 0;
@@ -1020,6 +1022,9 @@ public class ProfileActivity extends AppCompatActivity {
                         albumFile = createImageFile();
                         photoURI = data.getData();
                         albumURI = Uri.fromFile(albumFile);
+
+                        //crop image
+                        cropImage(photoURI);
                         galleryAddPic();
                         //프로필 이미지에 띄우기
                         img_profile.setImageURI(photoURI);
@@ -1034,15 +1039,40 @@ public class ProfileActivity extends AppCompatActivity {
                 profilePath = data.getStringExtra("profilePath");
                 //take a photo
                 try{
+                    cropImage(photoURI);
                     galleryAddPic();
                     //프로필 이미지에 띄우기
                     img_profile.setImageURI(imgUri);
+
                 }catch (Exception e){
                     e.printStackTrace();
                 }
                 break;
             }
+            case Crop.REQUEST_CROP:{
+                img_profile.setImageURI(imgUri);
+            }
         }
+    }
+
+    private void cropImage(Uri photoUri) {
+        /**
+         *  갤러리에서 선택한 경우에는 tempFile 이 없으므로 새로 생성해줍니다.
+         */
+        if(tempFile == null) {
+            try {
+                tempFile = createImageFile();
+            } catch (IOException e) {
+                Toast.makeText(this, "이미지 처리 오류! 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                finish();
+                e.printStackTrace();
+            }
+        }
+
+        //크롭 후 저장할 Uri
+        Uri savingUri = Uri.fromFile(tempFile);
+
+        Crop.of(photoUri, savingUri).asSquare().start(this);
     }
 
     //upload the file

@@ -99,6 +99,11 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:28.0.+'
 
 
+    //crop
+    implementation 'com.soundcloud.android:android-crop:1.0.1@aar'
+
+
+
 
 
 //}
