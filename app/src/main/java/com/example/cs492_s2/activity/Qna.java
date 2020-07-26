@@ -6,9 +6,6 @@ public class Qna {
     public String qna_question_3;
     public String qna_question_4;
 
-    public Qna(){
-
-    }
 
     public String getQna_question() {
         return qna_question;
